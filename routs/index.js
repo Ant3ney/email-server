@@ -10,8 +10,9 @@ module.exports = app => {
 		res.send('index route works');
 	});
 	app.post('/sendMail', async (req, res) => {
-		let message = req.body.message;
-		let fromEmail = req.body.fromEmail;
+		let message = req.body.message || 'unset';
+		let fromEmail = req.body.fromEmail || 'unset';
+		let subject = req.body.subject || 'unset';
 
 		let transporter = nodemailer.createTransport({
 			service: 'gmail',
@@ -20,13 +21,19 @@ module.exports = app => {
 				pass: process.env.PASSWORD,
 			},
 		});
-		let info = await transporter.sendMail({
-			from: `${fromEmail} via Portfolio site`,
-			to: 'anthonycavuoti@gmail.com',
-			subject: 'Portfolio Mail',
-			text: message,
-		});
-		res.status(200).json({ message: message });
+		let info = await transporter
+			.sendMail({
+				from: `${fromEmail} via Portfolio site`,
+				to: 'anthonycavuoti@gmail.com',
+				subject: subject,
+				text: message,
+			})
+			.then(() => {
+				res.status(200).json({ message: 'Sent email sucessfully' });
+			})
+			.catch(err => {
+				res.status(500).json(err);
+			});
 	});
 	app.use('/test', portfolioRouts);
 };
