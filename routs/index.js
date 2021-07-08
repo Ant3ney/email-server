@@ -15,15 +15,17 @@ module.exports = app => {
 		let subject = req.body.subject || 'unset';
 
 		let transporter = nodemailer.createTransport({
-			service: 'gmail',
+			host: 'smtp.gmail.com',
+			port: 465,
+			secure: true,
 			auth: {
 				user: process.env.HOST_EMAIL,
 				pass: process.env.PASSWORD,
 			},
 		});
-		let info = await transporter
+		transporter
 			.sendMail({
-				from: `${fromEmail} via Portfolio site`,
+				from: `anthonycavuoti2@gmail.com`,
 				to: 'anthonycavuoti@gmail.com',
 				subject: subject,
 				text: message,
