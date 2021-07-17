@@ -13,6 +13,7 @@ module.exports = app => {
 		let message = req.body.message || 'unset';
 		let fromEmail = req.body.fromEmail || 'unset';
 		let subject = req.body.subject || 'unset';
+		let toEmail = req.body.toEmail || 'anthonycavuoti@gmail.com';
 
 		let transporter = nodemailer.createTransport({
 			host: 'smtp.gmail.com',
