@@ -1,9 +1,12 @@
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
+let cors = require('cors');
 require('dotenv').config();
 
 app.use(bodyParser.json());
+app.use(cors());
+app.options('*', cors());
 
 require('./routs/index')(app);
 

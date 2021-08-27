@@ -7,9 +7,11 @@ let portfolioRouts = require('./pojects/Portfolio');
 
 module.exports = app => {
 	app.get('/', (req, res) => {
+		console.log('in route');
 		res.send('index route works');
 	});
 	app.post('/sendMail', async (req, res) => {
+		console.log('Sending mail');
 		let message = req.body.message || 'unset';
 		let fromEmail = req.body.fromEmail || 'unset';
 		let subject = req.body.subject || 'unset';
@@ -26,8 +28,8 @@ module.exports = app => {
 		});
 		transporter
 			.sendMail({
-				from: `anthonycavuoti2@gmail.com`,
-				to: 'anthonycavuoti@gmail.com',
+				from: fromEmail,
+				to: toEmail,
 				subject: subject,
 				text: message,
 			})
