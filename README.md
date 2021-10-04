@@ -49,6 +49,14 @@ Ok, I know, just show me the code.
 Example
 
 ```node
+let body = JSON.stringify({
+   toEmail: 'foobarmailerservice@gmail.com',
+   fromEmail: 'potentialclient@gmail.com',
+   subject: 'New email from PlanetMail.com!',
+   message:
+      'Hello Mr. Thompson Foo, I was wondering if your can fix my water cooler.',
+});
+
 fetch(`https://www.example.com/sendMail`, {
    method: 'post',
    body: body,
