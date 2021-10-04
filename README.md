@@ -24,9 +24,12 @@ Set PASSWORD to your app specific password
 Set HOST_EMAIL to the email your plan to use to send emails
 Set PRODUCTION to either live or development (Dose not current do anything)
 example in .env file
+
+```
 PASSWORD=5%Sdnkfy^8f568jty%F@SDGgoeF
 HOST_EMAIL=thompsonfoobar@gmail.com
 PRODUCTION=live
+```
 
 ## Deploy
 
