@@ -28,12 +28,13 @@ module.exports = app => {
       });
       transporter
          .sendMail({
-            from: fromEmail,
+            from: process.env.HOST_EMAIL,
             to: toEmail,
             subject: subject,
             text: message,
          })
-         .then(() => {
+         .then(data => {
+            console.log(data);
             res.status(200).json({ message: 'Sent email sucessfully' });
          })
          .catch(err => {
